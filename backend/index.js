@@ -15,6 +15,8 @@ This exercise can be completed in a few different ways. One of the possible solu
 
 */
 /**/
+const path = require('path') // 2 RENDER
+
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')//1. npm install cors, 2. Esto, sí.
@@ -194,7 +196,10 @@ app.patch('/api/persons/:id',(request, response) => {
 })
 
 //const PORT = 3001  //normal
-const PORT = process.env.PORT || 3001 //for RENDER.COM
+const PORT = process.env.PORT || 3001 //RENDER 1
+// Servir el frontend compilado de React  //RENDER 3
+app.use(express.static(path.join(__dirname, '../dist')))
+
 app.listen(PORT,() => {
     console.log(`Server running on port ${PORT}`)
 })
